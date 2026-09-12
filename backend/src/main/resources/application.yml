@@ -1,0 +1,14 @@
+server:
+  port: ${PORT:29502}
+
+spring:
+  datasource:
+    url: "${SPRING_DATASOURCE_URL:jdbc:h2:mem:app;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DB_CLOSE_DELAY=-1}"
+    driver-class-name: "${SPRING_DATASOURCE_DRIVER:org.h2.Driver}"
+    username: "${DB_USER:sa}"
+    password: "${DB_PASSWORD:}"
+  jpa:
+    database-platform: "${SPRING_JPA_DATABASE_PLATFORM:org.hibernate.dialect.H2Dialect}"
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
