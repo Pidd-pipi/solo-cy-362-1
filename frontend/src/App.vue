@@ -3,7 +3,7 @@ import { onMounted, ref } from "vue";
 import { fetchOverview } from "./api/client";
 import { APP_CODE, APP_NAME } from "./constants/app";
 import { REQUEST_MESSAGES } from "./constants/messages";
-import { createFallbackOverview } from "./state/dashboard";
+import { assembleOverview, createFallbackOverview } from "./state/dashboard";
 import type { OverviewResponse } from "./types";
 import FeatureStrip from "./components/FeatureStrip.vue";
 import MetricGrid from "./components/MetricGrid.vue";
@@ -18,7 +18,7 @@ function goHealth() {
 
 onMounted(async () => {
   try {
-    overview.value = await fetchOverview();
+    overview.value = assembleOverview(await fetchOverview());
     notice.value = "后端服务已联通，当前展示实时接口数据。";
   } catch {
     notice.value = REQUEST_MESSAGES.overviewFallback;
